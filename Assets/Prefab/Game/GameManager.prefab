@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1180000846873944}
+  m_IsPrefabAsset: 1
+--- !u!1 &1180000846873944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4863236914164092}
+  - component: {fileID: 114705996907348424}
+  - component: {fileID: 114565006842189852}
+  - component: {fileID: 114120645478059922}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4863236914164092
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180000846873944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -75.76856, y: 85.08587, z: -25.642864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114120645478059922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180000846873944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b5674bbb4e2d349bece6657da03b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114565006842189852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180000846873944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550674c1775d9154fb967b60b02564d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light1: {fileID: 0}
+  light2: {fileID: 0}
+  speed: 5
+--- !u!114 &114705996907348424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180000846873944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2112e0d8d8e1c549bf84aaeba2da9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  SpawnableLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Spawnable:
+  - MinScale: {x: 0.7, y: 0.7, z: 0.7}
+    MaxScale: {x: 4, y: 8, z: 4}
+    MinRotation: {x: 0, y: 0, z: 0}
+    MaxRotation: {x: 0, y: 360, z: 0}
+    RadiusFlipZY: 0
+    lockXAndZ: 1
+    SpawnRate: 1
+    MaxSpawnAmount: 1000
+    SceneryObject: {fileID: 100002, guid: 45c21f0cda0601948ae37755852e98ae, type: 3}
+  - MinScale: {x: 0.5, y: 0.6, z: 0.5}
+    MaxScale: {x: 1.1, y: 0.89, z: 0.69}
+    MinRotation: {x: -75, y: 0, z: -82.93201}
+    MaxRotation: {x: -120, y: 360, z: -82.93201}
+    RadiusFlipZY: 1
+    lockXAndZ: 0
+    SpawnRate: 1
+    MaxSpawnAmount: 1000
+    SceneryObject: {fileID: 100000, guid: df6fc746026def744bb4b6bf7697fb31, type: 3}
+  - MinScale: {x: 0.2, y: 0.2, z: 0.2}
+    MaxScale: {x: 0.48, y: 0.48, z: 0.38}
+    MinRotation: {x: -65, y: 0, z: 0}
+    MaxRotation: {x: -100, y: 360, z: 360}
+    RadiusFlipZY: 1
+    lockXAndZ: 0
+    SpawnRate: 1
+    MaxSpawnAmount: 1000
+    SceneryObject: {fileID: 100000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
+  Enabled: 1
