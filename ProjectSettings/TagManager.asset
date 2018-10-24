@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - IgnoreHit
+  - Enemy
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -15,13 +17,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Tree
   - Player
   - IgnorePlayer
   - PlayerOnly
-  - 
-  - 
-  - 
+  - PlayerWeapon
+  - EnemyWeapon
+  - DamageTriggers
   - 
   - 
   - 

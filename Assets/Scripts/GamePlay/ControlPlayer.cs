@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ControlModes { Player, RTS}
+
 public class ControlPlayer : MonoBehaviour {
 
 	CharacterController playerController;
@@ -16,9 +18,36 @@ public class ControlPlayer : MonoBehaviour {
 		playerController.enabled = true;
 		playerController.enableOverlapRecovery = true;
 	}
+
+	public ControlModes controlMode = ControlModes.Player;
+
+	void RTSMovement() {
+		if (initSwitchMode) {
+
+			initSwitchMode = false;
+		}
+
+
+	}
+
+	bool initSwitchMode = false;
 	
 	void Update () {
+		switch (controlMode) { 
+			case ControlModes.RTS:
+				initSwitchMode = true;
+				RTSMovement();
+				return;
+		}
+
+		if (initSwitchMode) {
+
+			initSwitchMode = false;
+		}
+
+
 		curMovement = Vector3.zero;
+
 		if (Input.GetKey(KeyCode.A)) {
 			SideMove(-1);
 		}
@@ -34,6 +63,7 @@ public class ControlPlayer : MonoBehaviour {
 		if (Input.GetKey(KeyCode.S)) {
 			ForwardMove(-1);
 		}
+		
 
 
 		if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.D)) {
@@ -47,9 +77,13 @@ public class ControlPlayer : MonoBehaviour {
 			transform.rotation = Quaternion.LookRotation(curMovement);
 		}
 
-		playerController.Move(Physics.gravity * Time.deltaTime);
+
+
+		playerController.Move(new Vector3(0,-velocity,0));
 		CameraPos.position = this.transform.position;
 	}
+
+	float velocity = 0;
 
 	Vector3 curMovement = Vector3.zero;
 
