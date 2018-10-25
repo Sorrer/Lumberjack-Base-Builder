@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
 
 	[Space(10)]
 	[Header("Zoom Config (y = ab^(zx+c)+d)")]
-
+	public bool ZoomEnabled = true;
 	public float z_Z = -1.1f;
 	public float z_A = 10f;
 	public float z_B = 0.9f;
@@ -101,6 +101,7 @@ public class CameraMovement : MonoBehaviour {
 			//Camera.main.transform.position = Camera.main.transform.position + -transform.parent.transform.right * speed * aSpeed * Time.deltaTime;
 		}
 
+
 		if (Input.GetAxis("HorizontalController2") >= deadZoneHorizontal2 || Input.GetAxis("HorizontalController2") <= -deadZoneHorizontal2) {
 
 			if (Input.GetAxis("VerticalController2") <= deadZoneVertical2 * deadZoneActiveMultiplier || Input.GetAxis("VerticalController2") >= -deadZoneVertical2 * deadZoneActiveMultiplier) {
@@ -114,18 +115,23 @@ public class CameraMovement : MonoBehaviour {
 
 
 		}
+		
 
-		if (Input.GetAxis("Mouse ScrollWheel") != 0) {
-			Zoom(1 * Input.GetAxis("Mouse ScrollWheel"));
-		}
-
-		if (Input.GetAxis("VerticalController2") >= deadZoneVertical2 || Input.GetAxis("VerticalController2") <= -deadZoneVertical2) {
-			if (Input.GetAxis("HorizontalController2") <= deadZoneHorizontal2 * deadZoneActiveMultiplier || Input.GetAxis("HorizontalController2") >= -deadZoneHorizontal2 * deadZoneActiveMultiplier) {
-				Zoom(0.1f * Input.GetAxis("VerticalController2"));
+		//Zoom update and input
+		if (ZoomEnabled) {
+			if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+				Zoom(1 * Input.GetAxis("Mouse ScrollWheel"));
 			}
+
+			if (Input.GetAxis("VerticalController2") >= deadZoneVertical2 || Input.GetAxis("VerticalController2") <= -deadZoneVertical2) {
+				if (Input.GetAxis("HorizontalController2") <= deadZoneHorizontal2 * deadZoneActiveMultiplier || Input.GetAxis("HorizontalController2") >= -deadZoneHorizontal2 * deadZoneActiveMultiplier) {
+					Zoom(0.1f * Input.GetAxis("VerticalController2"));
+				}
+			}
+
+			ZoomUpdate();
 		}
 
-		ZoomUpdate();
 
 	}
 
@@ -134,7 +140,7 @@ public class CameraMovement : MonoBehaviour {
 
 	float deadZoneActiveMultiplier = 1f;
 
-	void ZoomUpdate() {
+	public void ZoomUpdate() {
 
 		if (this.ZoomPercentageCurrent < this.ZoomPercentage) {
 			this.ZoomPercentageCurrent += this.ZoomSmoothSpeed * Time.fixedDeltaTime;
