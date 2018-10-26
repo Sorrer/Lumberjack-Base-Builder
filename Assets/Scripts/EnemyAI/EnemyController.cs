@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
     public string CurrentStatus = "";
     public AIMode Mode = AIMode.Idling;
 
+	public Damagable DamageSystem;
+
     //Moving    
     [HideInInspector]
     public Transform MoveTo;

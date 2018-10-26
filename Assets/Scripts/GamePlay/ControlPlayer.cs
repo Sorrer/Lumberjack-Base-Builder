@@ -25,6 +25,9 @@ public class ControlPlayer : MonoBehaviour {
 
 	void BaseBuildingMovement() {
 		if (initSwitchMode) {
+			cameraMovement.ZoomEnabled = false;
+			cam.transform.localPosition = new Vector3(0, 25, -4.408f);
+			cam.transform.localRotation = Quaternion.Euler(80, 0, 0);
 			cameraMovement.XZMovementEnabled = true;
 			cameraAttachment.enabled = false;
 			initSwitchMode = false;
@@ -66,7 +69,7 @@ public class ControlPlayer : MonoBehaviour {
 
 
 		curMovement = Vector3.zero;
-
+		sideMoveActive = false;
 		if (Input.GetKey(KeyCode.A)) {
 			SideMove(-1);
 		}
@@ -85,19 +88,19 @@ public class ControlPlayer : MonoBehaviour {
 
 
 
-		if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.D) && lastMousePouse == Input.mousePosition) {
+		//if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.D) && lastMousePouse == Input.mousePosition) {
 
-			SideMove(Input.GetAxis("HorizontalController"));
-			ForwardMove(Input.GetAxis("VerticalController"));
+		//	SideMove(Input.GetAxis("HorizontalController"));
+		//	ForwardMove(Input.GetAxis("VerticalController"));
 
-			if (Vector3.Distance(new Vector3(0, 0, 0), curMovement) >= 0.02) {
-				transform.rotation = Quaternion.LookRotation(curMovement);
-			}
+		//	if (Vector3.Distance(new Vector3(0, 0, 0), curMovement) >= 0.02) {
+		//		transform.rotation = Quaternion.LookRotation(curMovement);
+		//	}
+			
+		//} else {
+		//}
 
-		} else {
 			UpdateAngle();
-		}
-
 
 		lastMousePouse = Input.mousePosition;
 
@@ -112,6 +115,7 @@ public class ControlPlayer : MonoBehaviour {
 		if (!playerController.isGrounded)
 			curMovement.y = -9.87f * Time.deltaTime;	
 		playerController.Move(curMovement);
+		curMovement = new Vector3(0,0,0);
 	}
 
 	[Header("Rotation")]
@@ -180,14 +184,22 @@ public class ControlPlayer : MonoBehaviour {
 
 	Vector3 curMovement = Vector3.zero;
 
+	bool sideMoveActive = false;
+
 	void SideMove(float amount) {
 		//playerController.Move(this.CameraPos.right * speed * amount * Time.deltaTime);
 		curMovement += this.CameraPos.right * speed * amount * Time.deltaTime;
-
+		sideMoveActive = true;
 	}
 
 	void ForwardMove(float amount) {
 		//playerController.Move(this.CameraPos.forward * speed * amount * Time.deltaTime);
-		curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime;
+
+		if (sideMoveActive) {
+			curMovement *= 0.5f;
+			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime * 0.5f;
+		} else {
+			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime;
+		}
 	}
 }

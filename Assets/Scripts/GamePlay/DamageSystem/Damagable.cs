@@ -6,13 +6,11 @@ public class Damagable : MonoBehaviour {
 
 	public float health = 0;
 	public float shield = 0;
-	public List<float> armourHold; // WIP: to hold armour objects that add to shield
-	bool alive;
+	bool alive = true;
 	float maxHealth = float.MaxValue;
 
 	// Use this for initialization
 	void Start() {
-		armourHold = new List<float>();
 	}
 
 	// Update is called once per frame
@@ -23,10 +21,11 @@ public class Damagable : MonoBehaviour {
 		if (health <= 0) {
 			health = 0;
 		}
+		
 	}
 
-	void isDead() {
-		alive = false;
+	bool isDead() {
+		return alive;
 	}
 
 	// Deals damage to object health / sheild
@@ -37,7 +36,11 @@ public class Damagable : MonoBehaviour {
 			health -= damage - shield;
 			shield = 0;
 		} else if (shield > damage) {
-			loseShield(damage);
+			damageShield(damage);
+		}
+
+		if(health <= 0) {
+			alive = false;
 		}
 
 	}
@@ -47,7 +50,7 @@ public class Damagable : MonoBehaviour {
 	}
 
 	// Multiplies health by amt
-	public void multiHeal(float heal) {
+	public void multiplyHeal(float heal) {
 		health *= heal;
 	}
 
@@ -55,11 +58,8 @@ public class Damagable : MonoBehaviour {
 		shield += amt;
 	}
 
-	public void loseShield(float amt) {
+	public void damageShield(float amt) {
 		shield -= amt;
 	}
-
-	public void addArmour(float amt) {
-		armourHold.Add(amt);
-	}
+	
 }

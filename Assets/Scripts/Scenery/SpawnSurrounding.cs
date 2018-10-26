@@ -16,7 +16,8 @@ public class SpawnSurrounding : MonoBehaviour {
 
 	public List<SpawnableScenery> Spawnable = new List<SpawnableScenery>();
 
-	
+	public List<Collider> NoSpawn = new List<Collider>();
+
 
 	List<Rect> spawned = new List<Rect>();
 	
@@ -167,6 +168,26 @@ public class SpawnSurrounding : MonoBehaviour {
 		foreach(Rect rect2 in spawned) {
 			if (rect1.Overlaps(rect2)) {
 				return true;
+			}
+		}
+
+		foreach(Collider collider in NoSpawn) {
+			if(collider.GetType() == typeof(SphereCollider)) {
+				SphereCollider sphere = (SphereCollider)collider;
+
+				float sideLength = (rect1.width < rect1.height ? rect1.height : rect1.width);
+
+				if(Vector2.Distance(new Vector2(rect1.x, rect1.y), new Vector2(sphere.transform.position.x, sphere.transform.position.z)) < sphere.radius + sideLength){
+					return true;
+				}
+
+			} else if(collider.GetType() == typeof(BoxCollider)){
+				BoxCollider box = (BoxCollider)collider;
+				Rect rect2 = new Rect(box.transform.position.x, box.transform.position.z, box.size.x, box.size.z);
+				if (rect1.Overlaps(rect2)) {
+					return true;
+				}
+				
 			}
 		}
 

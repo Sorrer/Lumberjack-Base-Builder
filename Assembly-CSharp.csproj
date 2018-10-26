@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\GamePlay\ControlPlayer.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\Damagable.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\DamagableMarker.cs" />
-    <Compile Include="Assets\Scripts\GamePlay\DamageSystem\DamageManager.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\Weapon.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\WeaponTrigger.cs" />
     <Compile Include="Assets\Scripts\Global\GlobalGame.cs" />

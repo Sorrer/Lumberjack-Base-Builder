@@ -5,8 +5,9 @@ using UnityEngine;
 public class WeaponTrigger : MonoBehaviour {
 
 	public Weapon weapon;
-
+	
 	private void OnTriggerEnter(Collider other) {
+
 		if(weapon == null) {
 			Debug.Log("No weapon declared for me! " + this.gameObject.name + " (" + this.transform.parent.gameObject + ") " );
 			return;
