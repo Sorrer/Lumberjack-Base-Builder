@@ -24,6 +24,8 @@ public class ControlPlayer : MonoBehaviour {
 	public ControlModes controlMode = ControlModes.Player;
 
 	void BaseBuildingMovement() {
+		
+		//Initiates base building camera settings and movement
 		if (initSwitchMode) {
 			cameraMovement.ZoomEnabled = false;
 			cam.transform.localPosition = new Vector3(0, 25, -4.408f);
@@ -34,6 +36,7 @@ public class ControlPlayer : MonoBehaviour {
 		}
 
 
+		//Switch to playermode when pressed
 		if (Input.GetKeyDown(SwitchMode)) {
 			print("Switching to Player");
 			controlMode = ControlModes.Player;
@@ -45,6 +48,10 @@ public class ControlPlayer : MonoBehaviour {
 	bool initSwitchMode = false;
 
 	void Update() {
+
+		//Prevent updates if game is paused
+		if (GlobalGame.Paused) return;
+
 		switch (controlMode) {
 			case ControlModes.BaseBuilding:
 				BaseBuildingMovement();
@@ -61,11 +68,6 @@ public class ControlPlayer : MonoBehaviour {
 			initSwitchMode = false;
 		}
 
-		if (Input.GetKeyDown(SwitchMode)) {
-			print("Switching to BaseBuilding");
-			controlMode = ControlModes.BaseBuilding;
-			initSwitchMode = true;
-		}
 
 
 		curMovement = Vector3.zero;
@@ -87,6 +89,9 @@ public class ControlPlayer : MonoBehaviour {
 		}
 
 
+		//CONTROLLER INPUT 
+		
+		//TODO Make controller inputs change control mode (From pc to console and vis versa)
 
 		//if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.D) && lastMousePouse == Input.mousePosition) {
 
@@ -100,13 +105,19 @@ public class ControlPlayer : MonoBehaviour {
 		//} else {
 		//}
 
-			UpdateAngle();
+		UpdateAngle();
 
 		lastMousePouse = Input.mousePosition;
 
 		transform.rotation = Quaternion.AngleAxis((-CurrentAngle) - 180, Vector3.up);
-		
 
+
+		//Switch to basebuilding when pressed
+		if (Input.GetKeyDown(SwitchMode)) {
+			print("Switching to BaseBuilding");
+			controlMode = ControlModes.BaseBuilding;
+			initSwitchMode = true;
+		}
 	}
 
 	Vector3 lastMousePouse = new Vector3();
@@ -126,42 +137,45 @@ public class ControlPlayer : MonoBehaviour {
 	public float CurrentAngle = 0;
 
 	void UpdateAngle() {
+
 		TargetAngle = GetMouseAngle();
 
 		//Normalize within 10 Revolutions
 		TargetAngle = (TargetAngle + 3600) % 360;
 		CurrentAngle = (CurrentAngle + 3600) % 360;
 
-
+		//Calculate the distance from current to target
 		float UpperDistance = Mathf.Abs(CurrentAngle - (TargetAngle + 360));
 		float LowerDistance = Mathf.Abs(CurrentAngle - (TargetAngle - 360));
 		float NormalDistance = Mathf.Abs(CurrentAngle - TargetAngle );
 		
+		//Find the smallest distance, than move towards it
 		if(UpperDistance < NormalDistance || LowerDistance < NormalDistance) {
 			
 			if (UpperDistance < LowerDistance) {
-				print("Upper" + UpperDistance + " " + NormalDistance);
-				CurrentAngle += RotationSpeed;
+				CurrentAngle += RotationSpeed * Time.deltaTime;
 			} else {
-				print("Lower" + UpperDistance + " " + NormalDistance);
-				CurrentAngle -= RotationSpeed;
+				CurrentAngle -= RotationSpeed * Time.deltaTime;
 			}
 
 		} else {
 
 			if(CurrentAngle < TargetAngle) {
-				CurrentAngle += RotationSpeed;
+				CurrentAngle += RotationSpeed * Time.deltaTime;
 			} else {
-				CurrentAngle -= RotationSpeed;
+				CurrentAngle -= RotationSpeed * Time.deltaTime;
 			}
 		}
 
+		//Normalize angle back to 0-360
 		CurrentAngle = (CurrentAngle + 3600) % 360;
 
+		//If angle is in range, snap to it
 		if (CurrentAngle > TargetAngle - MinAngleRotation && CurrentAngle < TargetAngle + MinAngleRotation) {
 			CurrentAngle = TargetAngle;
 		}
 		
+		//Also if angle is in range, snap to it (But make sures it passes the devide line [Cross between 360 to 0])
 		if(UpperDistance > -MinAngleRotation+ 1 && UpperDistance < MinAngleRotation + 1) {
 			CurrentAngle = TargetAngle;
 		}
@@ -170,7 +184,7 @@ public class ControlPlayer : MonoBehaviour {
 
 
 	}
-
+	
 	float GetMouseAngle() {
 		return ((Mathf.Atan2(Input.mousePosition.y - GetCenterScreen().y, Input.mousePosition.x - GetCenterScreen().x) * 180 / Mathf.PI) + 180) - CameraPos.eulerAngles.y - 90;
 	}
@@ -196,8 +210,8 @@ public class ControlPlayer : MonoBehaviour {
 		//playerController.Move(this.CameraPos.forward * speed * amount * Time.deltaTime);
 
 		if (sideMoveActive) {
-			curMovement *= 0.5f;
-			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime * 0.5f;
+			curMovement *= 0.75f;
+			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime * 0.75f;
 		} else {
 			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime;
 		}

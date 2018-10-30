@@ -8,11 +8,12 @@ public class GlobalGame : MonoBehaviour {
 	public static bool Paused = false;
 	public static bool EnableEdgeScroll = false;
 
-	public static GlobalGame Instance;
+	public static GlobalGame _instance;
+	public static UnitManager UnitManager_Instance;
 
 	// Use this for initialization
 	void Start () {
-		GlobalGame.Instance = this;
+		GlobalGame._instance = this;
 	}
 	
 	// Update is called once per frame
