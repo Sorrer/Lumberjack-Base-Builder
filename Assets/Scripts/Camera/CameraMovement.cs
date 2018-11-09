@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour {
 	public float z_XOffset = 0;
 	public float z_YOffset = 0;
 	[Space(5)]
-	[Range(0f, 0.3f)] public float ZoomIncreaseSpeeed = .8f;
+	[Range(0f, 5f)] public float ZoomIncreaseSpeeed = .8f;
 	[Range(0, 1)] public float ZoomPercentage = .8f;
 	[Range(0, 1)] public float ZoomPercentageCurrent = .8f;
 	public float ZoomSmoothSpeed = 0.1f; //Amount of increase to add every second to reach goal;
@@ -56,21 +56,21 @@ public class CameraMovement : MonoBehaviour {
 	//public AnimationCurve ZoomCurve;
 
 
-	Vector3 DefaultPosition = Vector3.zero;
+	//Vector3 DefaultPosition = Vector3.zero;
 
 	
 	//Implement mouse move on edge
 	//Implement middle mouse move temp move
-
+	
     // Use this for initialization
     void Start () {
-		float zoomDefault = Camera.main.transform.position.y;
-		DefaultPosition = this.transform.position;
+		//float zoomDefault = Camera.main.transform.position.y;
+		//DefaultPosition = this.transform.position;
 		ZoomPercentageCurrent = ZoomPercentage;
 	}
 	//Add tilt
 
-	void Update() {
+	void FixedUpdate() {
 
 		//Prevent camera movement when paused
 		if (GlobalGame.Paused) return;
@@ -93,12 +93,12 @@ public class CameraMovement : MonoBehaviour {
 
 
 		if (Input.GetKey(KeyCode.Q)) {
-			transform.parent.transform.Rotate(0f, -200f * Time.deltaTime, 0f, Space.World);
-			//Camera.main.transform.position = Camera.main.transform.position + transform.parent.transform.right * speed * aSpeed * Time.deltaTime;
+			transform.parent.transform.Rotate(0f, -200f * Time.fixedDeltaTime, 0f, Space.World);
+			//Camera.main.transform.position = Camera.main.transform.position + transform.parent.transform.right * speed * aSpeed * Time.fixedDeltaTime;
 		}
 		if (Input.GetKey(KeyCode.E)) {
-			transform.parent.Rotate(0f, 200f * Time.deltaTime, 0f, Space.World);
-			//Camera.main.transform.position = Camera.main.transform.position + -transform.parent.transform.right * speed * aSpeed * Time.deltaTime;
+			transform.parent.Rotate(0f, 200f * Time.fixedDeltaTime, 0f, Space.World);
+			//Camera.main.transform.position = Camera.main.transform.position + -transform.parent.transform.right * speed * aSpeed * Time.fixedDeltaTime;
 		}
 
 
@@ -106,22 +106,22 @@ public class CameraMovement : MonoBehaviour {
 
 			if (Input.GetAxis("VerticalController2") <= deadZoneVertical2 * deadZoneActiveMultiplier || Input.GetAxis("VerticalController2") >= -deadZoneVertical2 * deadZoneActiveMultiplier) {
 				if (Input.GetAxis("VerticalController") > 0) {
-					transform.parent.Rotate(0f, -100f * Time.deltaTime * Input.GetAxis("HorizontalController2"), 0f, Space.World);
+					transform.parent.Rotate(0f, -100f * Time.fixedDeltaTime * Input.GetAxis("HorizontalController2"), 0f, Space.World);
 				} else {
-					transform.parent.Rotate(0f, -100f * Time.deltaTime * Input.GetAxis("HorizontalController2"), 0f, Space.World);
+					transform.parent.Rotate(0f, -100f * Time.fixedDeltaTime * Input.GetAxis("HorizontalController2"), 0f, Space.World);
 				}
 
 			}
 
 
 		}
-		
+
 
 		//Zoom update and input
 		if (ZoomEnabled) {
-			if (Input.GetAxis("Mouse ScrollWheel") != 0) {
-				Zoom(1 * Input.GetAxis("Mouse ScrollWheel"));
-			}
+			//	if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+			//		Zoom(1 * Input.GetAxis("Mouse ScrollWheel"));
+			//	}
 
 			if (Input.GetAxis("VerticalController2") >= deadZoneVertical2 || Input.GetAxis("VerticalController2") <= -deadZoneVertical2) {
 				if (Input.GetAxis("HorizontalController2") <= deadZoneHorizontal2 * deadZoneActiveMultiplier || Input.GetAxis("HorizontalController2") >= -deadZoneHorizontal2 * deadZoneActiveMultiplier) {
@@ -133,6 +133,14 @@ public class CameraMovement : MonoBehaviour {
 		}
 
 
+	}
+
+	private void Update() {
+		if (ZoomEnabled) {
+			if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+				Zoom(1 * Input.GetAxis("Mouse ScrollWheel"));
+			}
+		}
 	}
 
 	float deadZoneVertical2 = 0.15f;
@@ -221,7 +229,7 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	void moveCameraUp(float eSpeed) {
-		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.forward * eSpeed * aSpeed * Time.deltaTime;
+		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.forward * eSpeed * aSpeed * Time.fixedDeltaTime;
 
 		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
 
@@ -231,7 +239,7 @@ public class CameraMovement : MonoBehaviour {
 
 	}
 	void moveCameraDown (float eSpeed) {
-		Camera.main.transform.parent.position = Camera.main.transform.parent.position + -transform.parent.forward * eSpeed * aSpeed * Time.deltaTime;
+		Camera.main.transform.parent.position = Camera.main.transform.parent.position + -transform.parent.forward * eSpeed * aSpeed * Time.fixedDeltaTime;
 
 		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
 
@@ -240,7 +248,7 @@ public class CameraMovement : MonoBehaviour {
 		}
 	}
 	void moveCameraLeft (float eSpeed) {
-		Camera.main.transform.parent.position = Camera.main.transform.parent.position + -transform.parent.right * eSpeed * aSpeed * Time.deltaTime;
+		Camera.main.transform.parent.position = Camera.main.transform.parent.position + -transform.parent.right * eSpeed * aSpeed * Time.fixedDeltaTime;
 
 		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
 
@@ -249,7 +257,7 @@ public class CameraMovement : MonoBehaviour {
 		}
 	}
 	void moveCameraRight (float eSpeed) {
-		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.right * eSpeed * aSpeed * Time.deltaTime;
+		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.right * eSpeed * aSpeed * Time.fixedDeltaTime;
 
 		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
 

@@ -96,6 +96,25 @@ public class SpawnSurrounding : MonoBehaviour {
 
 		spawned.Add(rect);
 		itemSpawned.transform.position = new Vector3(rect.x, height, rect.y);
+
+		if(item.SpawnList != UnitTypes.NONE) {
+			
+			switch (item.SpawnList) {
+
+				case UnitTypes.Scenery:
+
+					GlobalGame.UnitManager.addUnit(itemSpawned.GetComponent<Building>(), item.SpawnList);
+
+					break;
+				default:
+
+					GlobalGame.UnitManager.addUnit(itemSpawned, item.SpawnList);
+
+					break;
+
+			}
+
+		}
 	}
 
 

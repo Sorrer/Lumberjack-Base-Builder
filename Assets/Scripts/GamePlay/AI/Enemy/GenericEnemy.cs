@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GenericEnemy : MonoBehaviour {
-
-    public EnemyController controller;
+public abstract class GenericEnemy : GenericAI {
+	
     public float wanderRange;
 
 	// Use this for initialization

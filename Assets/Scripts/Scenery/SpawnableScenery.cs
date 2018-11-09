@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnableScenery {
 
+
+	public UnitTypes SpawnList = UnitTypes.NONE;
+
 	public Vector3 MinScale = new Vector3(0, 0, 0);
 	public Vector3 MaxScale = new Vector3(0, 0, 0);
 

@@ -5,12 +5,9 @@ using UnityEngine.AI;
 
 public enum AIMode { Moving, Attacking, Idling, Wandering }
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : AIController {
 
-    public string CurrentStatus = "";
-    public AIMode Mode = AIMode.Idling;
 
-	public Damagable DamageSystem;
 
     //Moving    
     [HideInInspector]
@@ -24,39 +21,28 @@ public class EnemyController : MonoBehaviour {
 
     private NavMeshAgent agent;
     private GameObject player;
-
-    private GenericEnemy thisEnemy;
-
+	
 
     void Start () {
         //get the player object from the Global Game script
         //something like player = GameController._____
         agent = GetComponent<NavMeshAgent>();
-        //agent.destination = player.position;
+		//agent.destination = player.position;
 
-
-        thisEnemy = GetComponentInChildren<GenericEnemy>();
-
+		setBaseComponents();
 	}
-
-    bool genericEnemyRecieved = false;
 	
 	void Update () {
-
-        //check to make sure all components can be referenced
-        if(this.genericEnemyRecieved == false){
-            thisEnemy = GetComponentInChildren<GenericEnemy>();
-
-            if (thisEnemy != null)
-            {
-                thisEnemy.controller = this;
-                this.genericEnemyRecieved = true;
-            }
-        }
+		if (!this.foundAllBaseComponents) {
+			agent = GetComponent<NavMeshAgent>();
+			setBaseComponents();
+		}
 
 
 
-        switch(Mode)
+		GenericEnemy enemy = (GenericEnemy)(genericAI);
+
+		switch (Mode)
         {
             case AIMode.Moving:
                 UpdateMove();
@@ -68,7 +54,7 @@ public class EnemyController : MonoBehaviour {
                 UpdateIdle();
                 break;
             case AIMode.Wandering:
-                UpdateWander(thisEnemy.wanderRange);
+                UpdateWander(enemy.wanderRange);
                 break;
             default:
                 //idling
@@ -85,7 +71,7 @@ public class EnemyController : MonoBehaviour {
 
     //this method is called from Update when the enemy is in Attacking mode
     private void UpdateAttack() {
-        thisEnemy.Attack(player);
+        //enemy.Attack(player);
     }
 
     //this method is called from Update when the enemy is in Idle mode
@@ -95,6 +81,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void UpdateWander(float wanderRange) {
+
         Vector3 random = new Vector3(Random.Range(-1.0f * wanderRange, 1.0f * wanderRange), 0, Random.Range(-1.0f * wanderRange, 1.0f * wanderRange));
         agent.destination = transform.position + random;
     }

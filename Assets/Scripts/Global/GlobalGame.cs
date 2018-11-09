@@ -7,9 +7,12 @@ public class GlobalGame : MonoBehaviour {
 
 	public static bool Paused = false;
 	public static bool EnableEdgeScroll = false;
+	public static ControlModes ControlMode = ControlModes.Player;
+
+	public static PlayerMain Player;
 
 	public static GlobalGame _instance;
-	public static UnitManager UnitManager_Instance;
+	public static UnitManager UnitManager;
 
 	// Use this for initialization
 	void Start () {

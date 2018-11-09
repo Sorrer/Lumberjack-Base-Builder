@@ -1,28 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1676190366013416}
-  m_IsPrefabAsset: 1
 --- !u!1 &1676190366013416
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4091305856386376}
   - component: {fileID: 33605138415212210}
   - component: {fileID: 23970457867417632}
   - component: {fileID: 64233442693941560}
-  m_Layer: 0
+  - component: {fileID: 135968979032084098}
+  m_Layer: 20
   m_Name: Rock 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,9 +22,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4091305856386376
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676190366013416}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.46596813, y: 0.3156767, z: -23.234592}
@@ -42,11 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33605138415212210
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676190366013416}
+  m_Mesh: {fileID: 4300000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
 --- !u!23 &23970457867417632
 MeshRenderer:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676190366013416}
   m_Enabled: 1
   m_CastShadows: 1
@@ -56,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
   m_StaticBatchInfo:
@@ -77,18 +79,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33605138415212210
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676190366013416}
-  m_Mesh: {fileID: 4300000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
 --- !u!64 &64233442693941560
 MeshCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676190366013416}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -96,5 +92,42 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
+--- !u!114 &135968979032084098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676190366013416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b77ccb9dd0e3ee48a7fa60ea087b3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Container: {fileID: 4091305856386376}
+  PlaceHolder: {fileID: 0}
+  InvalidBuildObject: {fileID: 0}
+  DamgeSystem: {fileID: 0}
+  Bounds: []
+  Cost:
+    Cost1: 0
+    Cost2: 0
+    Cost3: 0
+    SpecialCost: []
+  BuildCost:
+    Cost1: 0
+    Cost2: 0
+    Cost3: 0
+    SpecialCost: []
+  Destruction:
+    Cost1: 0
+    Cost2: 0
+    Cost3: 0
+    SpecialCost: []
+  BreakCost:
+    Cost1: 0
+    Cost2: 0
+    Cost3: 0
+    SpecialCost: []
+  OverwiteType: 2

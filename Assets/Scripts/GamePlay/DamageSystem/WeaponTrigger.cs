@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponTrigger : MonoBehaviour {
 
 	public Weapon weapon;
+
 	
 	private void OnTriggerEnter(Collider other) {
 
@@ -12,6 +13,7 @@ public class WeaponTrigger : MonoBehaviour {
 			Debug.Log("No weapon declared for me! " + this.gameObject.name + " (" + this.transform.parent.gameObject + ") " );
 			return;
 		}
+		
 
 		DamagableMarker marker = other.GetComponent<DamagableMarker>();
 		Damagable damageManager = other.GetComponent<Damagable>();
@@ -22,6 +24,12 @@ public class WeaponTrigger : MonoBehaviour {
 		} else if(damageManager != null) {
 			weapon.WeaponTriggerEnter(damageManager);
 		}
+
 		
 	}
+
+	private void OnTriggerStay(Collider other) {
+		OnTriggerEnter(other);
+	}
+
 }

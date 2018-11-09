@@ -40,6 +40,7 @@ public class ControlPlayer : MonoBehaviour {
 		if (Input.GetKeyDown(SwitchMode)) {
 			print("Switching to Player");
 			controlMode = ControlModes.Player;
+			GlobalGame.ControlMode = ControlModes.Player;
 			initSwitchMode = true;
 		}
 
@@ -70,6 +71,26 @@ public class ControlPlayer : MonoBehaviour {
 
 
 
+		
+
+
+		//Switch to basebuilding when pressed
+		if (Input.GetKeyDown(SwitchMode)) {
+			print("Switching to BaseBuilding");
+			controlMode = ControlModes.BaseBuilding;
+			GlobalGame.ControlMode = ControlModes.BaseBuilding;
+			initSwitchMode = true;
+		}
+	}
+	
+
+	private void FixedUpdate() {
+		switch (controlMode) {
+			case ControlModes.BaseBuilding:
+				BaseBuildingMovement();
+				return;
+		}
+
 		curMovement = Vector3.zero;
 		sideMoveActive = false;
 		if (Input.GetKey(KeyCode.A)) {
@@ -90,7 +111,7 @@ public class ControlPlayer : MonoBehaviour {
 
 
 		//CONTROLLER INPUT 
-		
+
 		//TODO Make controller inputs change control mode (From pc to console and vis versa)
 
 		//if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.D) && lastMousePouse == Input.mousePosition) {
@@ -101,30 +122,18 @@ public class ControlPlayer : MonoBehaviour {
 		//	if (Vector3.Distance(new Vector3(0, 0, 0), curMovement) >= 0.02) {
 		//		transform.rotation = Quaternion.LookRotation(curMovement);
 		//	}
-			
+
 		//} else {
 		//}
 
 		UpdateAngle();
-
-		lastMousePouse = Input.mousePosition;
+		
 
 		transform.rotation = Quaternion.AngleAxis((-CurrentAngle) - 180, Vector3.up);
 
 
-		//Switch to basebuilding when pressed
-		if (Input.GetKeyDown(SwitchMode)) {
-			print("Switching to BaseBuilding");
-			controlMode = ControlModes.BaseBuilding;
-			initSwitchMode = true;
-		}
-	}
-
-	Vector3 lastMousePouse = new Vector3();
-
-	private void FixedUpdate() {
 		if (!playerController.isGrounded)
-			curMovement.y = -9.87f * Time.deltaTime;	
+			curMovement.y = -9.87f * Time.fixedDeltaTime;	
 		playerController.Move(curMovement);
 		curMovement = new Vector3(0,0,0);
 	}
@@ -153,17 +162,17 @@ public class ControlPlayer : MonoBehaviour {
 		if(UpperDistance < NormalDistance || LowerDistance < NormalDistance) {
 			
 			if (UpperDistance < LowerDistance) {
-				CurrentAngle += RotationSpeed * Time.deltaTime;
+				CurrentAngle += RotationSpeed * Time.fixedDeltaTime;
 			} else {
-				CurrentAngle -= RotationSpeed * Time.deltaTime;
+				CurrentAngle -= RotationSpeed * Time.fixedDeltaTime;
 			}
 
 		} else {
 
 			if(CurrentAngle < TargetAngle) {
-				CurrentAngle += RotationSpeed * Time.deltaTime;
+				CurrentAngle += RotationSpeed * Time.fixedDeltaTime;
 			} else {
-				CurrentAngle -= RotationSpeed * Time.deltaTime;
+				CurrentAngle -= RotationSpeed * Time.fixedDeltaTime;
 			}
 		}
 
@@ -194,7 +203,7 @@ public class ControlPlayer : MonoBehaviour {
 	}
 
 
-	float velocity = 9.87f;
+	//float velocity = 9.87f;
 
 	Vector3 curMovement = Vector3.zero;
 
@@ -202,7 +211,7 @@ public class ControlPlayer : MonoBehaviour {
 
 	void SideMove(float amount) {
 		//playerController.Move(this.CameraPos.right * speed * amount * Time.deltaTime);
-		curMovement += this.CameraPos.right * speed * amount * Time.deltaTime;
+		curMovement += this.CameraPos.right * speed * amount * Time.fixedDeltaTime;
 		sideMoveActive = true;
 	}
 
@@ -211,9 +220,9 @@ public class ControlPlayer : MonoBehaviour {
 
 		if (sideMoveActive) {
 			curMovement *= 0.75f;
-			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime * 0.75f;
+			curMovement += this.CameraPos.forward * speed * amount * Time.fixedDeltaTime * 0.75f;
 		} else {
-			curMovement += this.CameraPos.forward * speed * amount * Time.deltaTime;
+			curMovement += this.CameraPos.forward * speed * amount * Time.fixedDeltaTime;
 		}
 	}
 }
