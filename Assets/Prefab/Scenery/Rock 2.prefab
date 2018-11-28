@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 33605138415212210}
   - component: {fileID: 23970457867417632}
   - component: {fileID: 64233442693941560}
-  - component: {fileID: 135968979032084098}
-  m_Layer: 20
+  - component: {fileID: 5145755769740218120}
+  - component: {fileID: 6632225293452927577}
+  m_Layer: 18
   m_Name: Rock 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 2c262eb9f4f73614ca22d1486b0608d0, type: 3}
---- !u!114 &135968979032084098
+--- !u!114 &5145755769740218120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,25 +103,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676190366013416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b77ccb9dd0e3ee48a7fa60ea087b3ed, type: 3}
+  m_Script: {fileID: 11500000, guid: f7d417e682d721c4292199c9ceff7db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Container: {fileID: 4091305856386376}
   PlaceHolder: {fileID: 0}
   InvalidBuildObject: {fileID: 0}
   DamgeSystem: {fileID: 0}
-  Bounds: []
-  Cost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
+  Bounds:
+  - {fileID: 64233442693941560}
   BuildCost:
     Cost1: 0
     Cost2: 0
     Cost3: 0
     SpecialCost: []
-  Destruction:
+  DestructionCost:
     Cost1: 0
     Cost2: 0
     Cost3: 0
@@ -130,4 +127,17 @@ MonoBehaviour:
     Cost2: 0
     Cost3: 0
     SpecialCost: []
-  OverwiteType: 2
+  OverwiteType: 0
+--- !u!135 &6632225293452927577
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676190366013416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.25
+  m_Center: {x: 0.01781398, y: 0.04190148, z: 0.12802006}

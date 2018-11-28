@@ -13,7 +13,8 @@ public class GlobalGame : MonoBehaviour {
 
 	public static GlobalGame _instance;
 	public static UnitManager UnitManager;
-
+	public static BuildManager BuildManager;
+	
 	// Use this for initialization
 	void Start () {
 		GlobalGame._instance = this;
@@ -25,9 +26,7 @@ public class GlobalGame : MonoBehaviour {
 			TogglePause();
 
 			if (Paused) {
-				Cursor.lockState = CursorLockMode.None;
 			}else {
-				Cursor.lockState = CursorLockMode.Confined;
 			}
 		}
 	}

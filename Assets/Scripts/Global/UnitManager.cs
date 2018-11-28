@@ -3,28 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum UnitTypes {Enemy, Player, Tree, Building, Scenery, NONE}
-
+[System.Serializable]
 public class UnitManager : MonoBehaviour {
 
 	//Holds current units (Enemies,Player,Trees [All seperate])
 
-	public List<GenericEnemy>	Enemies		= new List<GenericEnemy>();
-	public List<GameObject>		Player		= new List<GameObject>();
-	public List<GameObject>		Trees		= new List<GameObject>();
-	public List<Building>		Buildings	= new List<Building>();
+
+	[SerializeField] private List<GenericEnemy> Enemies	= new List<GenericEnemy>();
+	[SerializeField] private List<GameObject> Player	= new List<GameObject>();
+	[SerializeField] private List<Building> Trees		= new List<Building>();
+	[SerializeField] private List<Building> Buildings	= new List<Building>();
 
 	public List<Building> Scenery = new List<Building>();
 
 	public static UnitManager _instance;
-	
-	void Start () {
+
+	void Start() {
 		UnitManager._instance = this;
 		GlobalGame.UnitManager = this;
 	}
-	
-	void Update () {
-		
+
+	void Update() {
+
 	}
+
+	// --------- Getters and Setters--------------
+
+	public List<GenericEnemy> EnemyList {
+		get {
+			return Enemies;
+		}
+	}
+	public List<GameObject> PlayerList {
+		get {
+			return Player;
+		}
+	}
+	public List<Building> TreeList {
+		get {
+			return Trees;
+		}
+	}
+	public List<Building> BuildingList {
+		get {
+			return Buildings;
+		}
+	}
+	public List<Building> SceneryList {
+		get {
+			return Scenery;
+		}
+	}
+
+
+
+	// --------- Adding units ----------------
 
 	public bool addUnit(Object obj, UnitTypes type) {
 
@@ -51,8 +84,8 @@ public class UnitManager : MonoBehaviour {
 
 			case UnitTypes.Tree:
 
-				if (obj is GameObject) {
-					this.addTree((GameObject)obj);
+				if (obj is Building) {
+					this.addTree((Building)obj);
 					added = true;
 				}
 
@@ -104,10 +137,10 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	//Trees IO
-	public void addTree(GameObject tree) {
+	public void addTree(Building tree) {
 		this.Trees.Add(tree);
 	}
-	public void removeTree(GameObject tree) {
+	public void removeTree(Building tree) {
 		this.Trees.Remove(tree);
 	}
 
@@ -115,7 +148,6 @@ public class UnitManager : MonoBehaviour {
 	public void addBuilding(Building building) {
 		this.Buildings.Add(building);
 	}
-
 	public void removeBuilding(Building building) {
 		this.Buildings.Remove(building);
 	}
@@ -125,7 +157,6 @@ public class UnitManager : MonoBehaviour {
 	public void addScenery(Building scenery) {
 		this.Scenery.Add(scenery);
 	}
-
 	public void removeScenery(Building scenery) {
 		this.Scenery.Remove(scenery);
 	}

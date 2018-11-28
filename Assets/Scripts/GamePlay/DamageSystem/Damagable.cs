@@ -256,7 +256,7 @@ public class Damagable : MonoBehaviour {
 		return IsAlive();
 	}
 
-	// ------------ Setters and Getters ------------------
+	// ------------ Getters and Setters ------------------
 
 	public List<DamageSection> healthArray {
 		get {

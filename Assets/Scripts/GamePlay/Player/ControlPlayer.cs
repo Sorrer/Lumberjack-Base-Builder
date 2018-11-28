@@ -126,9 +126,8 @@ public class ControlPlayer : MonoBehaviour {
 		//} else {
 		//}
 
-		UpdateAngle();
+		if(RotationEnabled) UpdateAngle();
 		
-
 		transform.rotation = Quaternion.AngleAxis((-CurrentAngle) - 180, Vector3.up);
 
 
@@ -139,6 +138,8 @@ public class ControlPlayer : MonoBehaviour {
 	}
 
 	[Header("Rotation")]
+
+	public bool RotationEnabled = true;
 
 	public float TargetAngle = 0;
 	public float RotationSpeed = 0.1f;
@@ -186,6 +187,14 @@ public class ControlPlayer : MonoBehaviour {
 		
 		//Also if angle is in range, snap to it (But make sures it passes the devide line [Cross between 360 to 0])
 		if(UpperDistance > -MinAngleRotation+ 1 && UpperDistance < MinAngleRotation + 1) {
+			CurrentAngle = TargetAngle;
+		}
+
+		if(LowerDistance > -MinAngleRotation + 1 && LowerDistance < MinAngleRotation + 1) {
+			CurrentAngle = TargetAngle;
+		}
+
+		if (NormalDistance > -MinAngleRotation + 1 && NormalDistance < MinAngleRotation + 1) {
 			CurrentAngle = TargetAngle;
 		}
 

@@ -106,6 +106,11 @@ public class SpawnSurrounding : MonoBehaviour {
 					GlobalGame.UnitManager.addUnit(itemSpawned.GetComponent<Building>(), item.SpawnList);
 
 					break;
+				case UnitTypes.Tree:
+
+					GlobalGame.UnitManager.addUnit(itemSpawned.GetComponent<Building>(), item.SpawnList);
+
+					break;
 				default:
 
 					GlobalGame.UnitManager.addUnit(itemSpawned, item.SpawnList);

@@ -5,7 +5,7 @@ using UnityEngine;
 //
 public enum BuildingOverwriteType {Instant, Cost, Disabled}
 
-public class Building : Entity
+public abstract class Building : Entity
 {
 
 
@@ -27,25 +27,30 @@ public class Building : Entity
 	///  Bounds that are requied to place
 	public Collider[] Bounds = null;
 
-	[Header("Settings")]
 	[Space(5)]
-
-
-	public BuildCost Cost			= new BuildCost();
+	[Header("Build Cost Settings")]
 
 	[Space(2)]
-	public BuildCost BuildCost		= new BuildCost();
+
+	public BuildCost BuildCost			= new BuildCost();
 
 	[Space(2)]
-	public BuildCost Destruction	= new BuildCost();
+	public BuildCost DestructionCost	= new BuildCost();
 
 	[Space(2)]
-	public BuildCost BreakCost		= new BuildCost();
+	public BuildCost BreakCost			= new BuildCost();
 
-	[Space(2)]
-	
 	///  When placing a building on it, how to function? Break instantly? Unable to?
 	public BuildingOverwriteType OverwiteType = BuildingOverwriteType.Disabled;
+
+
+	[Space(5)]
+	[Header("Build Placement Settings")]
+	[Space(2)]
+
+	//Offset is where the building should be placed at point (NOT HOW IT VISUAL LOOKS WHEN PLACING)
+	public Vector3 PlacementOffset = new Vector3();
+
 	
 	
 
@@ -53,7 +58,11 @@ public class Building : Entity
 	public bool CollidesWith(Building building) {
 		return false;
 	}
-	
+
+	/// <summary>
+	/// Called when object is offically built
+	/// </summary>
+	public abstract void Built();
 
 	
 

@@ -69,9 +69,9 @@ MonoBehaviour:
     Value: 0
     DamageReduction: 0
   - Type: 2
-    MaxValue: 5
-    Value: 0
-    DamageReduction: 0.9
+    MaxValue: 15
+    Value: 10
+    DamageReduction: 0.95
   - Type: 1
     MaxValue: 5
     Value: 0

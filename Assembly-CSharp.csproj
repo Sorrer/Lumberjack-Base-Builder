@@ -63,9 +63,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AttachTransform.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\EditorProperties\PropertyAttributes\ReadOnlyAttribute.cs" />
-    <Compile Include="Assets\Scripts\EditorProperties\PropertyDrawer\DamageSectionDrawer.cs" />
-    <Compile Include="Assets\Scripts\EditorProperties\PropertyDrawer\ReadOnlyDrawer.cs" />
     <Compile Include="Assets\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\GamePlay\AI\AIController.cs" />
     <Compile Include="Assets\Scripts\GamePlay\AI\Enemy\EnemyController.cs" />
@@ -75,6 +72,8 @@
     <Compile Include="Assets\Scripts\GamePlay\AI\GenericAI.cs" />
     <Compile Include="Assets\Scripts\GamePlay\BaseBuilding\BuildCost.cs" />
     <Compile Include="Assets\Scripts\GamePlay\BaseBuilding\Building.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\BaseBuilding\BuildManager.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\BaseBuilding\GenericBuilding.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\Damagable.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\DamagableMarker.cs" />
     <Compile Include="Assets\Scripts\GamePlay\DamageSystem\DamageSection.cs" />
@@ -87,9 +86,10 @@
     <Compile Include="Assets\Scripts\GamePlay\Player\ControlBaseBuilding.cs" />
     <Compile Include="Assets\Scripts\GamePlay\Player\ControlPlayer.cs" />
     <Compile Include="Assets\Scripts\GamePlay\Player\PlayerMain.cs" />
-    <Compile Include="Assets\Scripts\GamePlay\Player\Weapons\Sword.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\Player\Weapons\Hatchet.cs" />
     <Compile Include="Assets\Scripts\Global\GlobalGame.cs" />
     <Compile Include="Assets\Scripts\Global\UnitManager.cs" />
+    <Compile Include="Assets\Scripts\PropertyAttributes\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Scripts\RotateLights.cs" />
     <Compile Include="Assets\Scripts\Scenery\SpawnableLocation.cs" />
     <Compile Include="Assets\Scripts\Scenery\SpawnableScenery.cs" />

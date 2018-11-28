@@ -11,7 +11,9 @@ public class TestEnemy1 : GenericEnemy {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (!this.controller.DamageManager.IsAlive()) {
+			Destroy(this.transform.gameObject);
+		}
 	}
 
     public override void Attack(GameObject enemy) {

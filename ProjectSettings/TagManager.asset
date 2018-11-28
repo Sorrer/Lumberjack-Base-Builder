@@ -38,8 +38,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - IgnoreAll
+  - BuildPlane
   m_SortingLayers:
   - name: Default
     uniqueID: 0

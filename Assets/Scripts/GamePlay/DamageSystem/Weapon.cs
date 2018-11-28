@@ -6,12 +6,15 @@ public abstract class Weapon : MonoBehaviour {
 
 
 
+	public int Damage = 0;
+
 	public bool CurrentlyAttacking = false;
 
-	//MS
+	//Seconds
 	public float AttackTime = 0;
 
 	public List<WeaponTrigger> Triggers = new List<WeaponTrigger>();
+	Timer weaponTimer = new Timer(0);
 
 
 	public bool Interrupt = false;
@@ -19,7 +22,7 @@ public abstract class Weapon : MonoBehaviour {
 	//Clear list after attack is over
 	List<Damagable> alreadyAttacked = new List<Damagable>();
 
-	void Start () {
+	public void Initiate () {
 		foreach(WeaponTrigger trigger in Triggers) {
 			trigger.weapon = this;
 		}
@@ -27,11 +30,13 @@ public abstract class Weapon : MonoBehaviour {
 		weaponTimer.SetTimer(AttackTime);
 	}
 
-	Timer weaponTimer = new Timer(0);
 	
 	bool executedFinish = false;
 
-	void Update () {
+
+	// -------- MAIN LOOP -------------
+	
+	public void UpdateWeapon() {
 
 		if (weaponTimer.Started) {
 			weaponTimer.Update();
@@ -42,9 +47,6 @@ public abstract class Weapon : MonoBehaviour {
 			OnWeaponSwingEnd(false);
 		}
 		
-		if(weaponTimer.Started && !weaponTimer.IsDone()) {
-
-		}
 
 
 		if (Interrupt) {
@@ -55,23 +57,49 @@ public abstract class Weapon : MonoBehaviour {
 	}
 
 	public void Swing() {
+		CurrentlyAttacking = true;
 		weaponTimer.Start();
 		OnWeaponSwingStart();
+		executedFinish = false;
 	}
 
-	void SwingFinish() {
+	public void SwingFinish() {
+		CurrentlyAttacking = false;
 		alreadyAttacked.Clear();
 		Interrupt = false;
 		executedFinish = true;
 		weaponTimer.Stop();
 	}
 
+
+
+	// -------- SETTERS AND GETTERS ---------------
+
+	/// <summary>
+	/// Amount of time it takes for the animation to finish (Seconds)
+	/// </summary>
+	public float SwingTime {
+		get {
+			return this.AttackTime;
+		}
+
+		set {
+			if(value > 0) {
+				this.AttackTime = value;
+			}
+		}
+	}
+
+
+
+	// -------- ABSTRACT METHODS ------------------
+
 	public abstract void OnWeaponHit(Damagable damageManager);
 	public abstract void OnWeaponSwingStart();
 	public abstract void OnWeaponSwingEnd(bool Interrupted);
 
 
-
+	// ------- COLLISION DETECTION ----------------
 
 	public void WeaponTriggerEnter(DamagableMarker marker) {
 		WeaponTriggerEnter(marker.DamageManager); 
@@ -79,7 +107,10 @@ public abstract class Weapon : MonoBehaviour {
 
 	public void WeaponTriggerEnter(Damagable damageManager) {
 
+		if (!this.CurrentlyAttacking) return; 
 		if (HasBeenAttacked(damageManager)) return;
+
+
 		alreadyAttacked.Add(damageManager);
 		OnWeaponHit(damageManager);
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4024286824936668}
   - component: {fileID: 33813780675035406}
   - component: {fileID: 23167211686072256}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass_Blade_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4153134924661426}
   - component: {fileID: 5632956991754899183}
   - component: {fileID: 7549711620622916452}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass Small 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,25 +136,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426965054500752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b77ccb9dd0e3ee48a7fa60ea087b3ed, type: 3}
+  m_Script: {fileID: 11500000, guid: f7d417e682d721c4292199c9ceff7db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Container: {fileID: 4153134924661426}
   PlaceHolder: {fileID: 0}
   InvalidBuildObject: {fileID: 0}
   DamgeSystem: {fileID: 0}
-  Bounds: []
-  Cost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
+  Bounds:
+  - {fileID: 5632956991754899183}
   BuildCost:
     Cost1: 0
     Cost2: 0
     Cost3: 0
     SpecialCost: []
-  Destruction:
+  DestructionCost:
     Cost1: 0
     Cost2: 0
     Cost3: 0
@@ -164,7 +160,7 @@ MonoBehaviour:
     Cost2: 0
     Cost3: 0
     SpecialCost: []
-  OverwiteType: 2
+  OverwiteType: 0
 --- !u!1 &1485783790757882
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +172,7 @@ GameObject:
   - component: {fileID: 4465404192035070}
   - component: {fileID: 33365787078869044}
   - component: {fileID: 23972656785124670}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass_Blade_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +249,7 @@ GameObject:
   - component: {fileID: 4895461798563080}
   - component: {fileID: 33607450120385348}
   - component: {fileID: 23677332185336722}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass_Blade_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +326,7 @@ GameObject:
   - component: {fileID: 4174046869732280}
   - component: {fileID: 33893723542374928}
   - component: {fileID: 23948846868514808}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass_Blade_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +403,7 @@ GameObject:
   - component: {fileID: 4572785930568690}
   - component: {fileID: 33484957364386980}
   - component: {fileID: 23890354256543340}
-  m_Layer: 20
+  m_Layer: 18
   m_Name: Grass_Blade_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
