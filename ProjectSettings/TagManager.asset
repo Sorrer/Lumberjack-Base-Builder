@@ -7,6 +7,8 @@ TagManager:
   - IgnoreHit
   - Enemy
   - Tree
+  - OutsidePlane
+  - Gameplane
   layers:
   - Default
   - TransparentFX
@@ -37,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - RaycastGame
   - IgnoreAll
   - BuildPlane
   m_SortingLayers:

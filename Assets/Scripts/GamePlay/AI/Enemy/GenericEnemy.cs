@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GenericEnemy : GenericAI {
-	
+
+	public EnemyType type;
     public float wanderRange;
 
 	// Use this for initialization

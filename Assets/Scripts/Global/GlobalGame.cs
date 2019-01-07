@@ -14,14 +14,24 @@ public class GlobalGame : MonoBehaviour {
 	public static GlobalGame _instance;
 	public static UnitManager UnitManager;
 	public static BuildManager BuildManager;
-	
+	public static GameState CurrentGameState;
+
 	// Use this for initialization
 	void Start () {
+		
 		GlobalGame._instance = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown(KeyCode.F1)) {
+			GameLoopManager._instance.SwitchStateTo(GameState.Day);
+		}
+		if (Input.GetKeyDown(KeyCode.F2)) {
+			GameLoopManager._instance.SwitchStateTo(GameState.Night);
+		}
+
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			TogglePause();
 
@@ -43,4 +53,6 @@ public class GlobalGame : MonoBehaviour {
 	public void Resume() {
 		Paused = false;
 	}
+
+
 }

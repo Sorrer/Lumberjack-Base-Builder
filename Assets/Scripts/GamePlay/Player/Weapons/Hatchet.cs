@@ -16,7 +16,7 @@ public class Hatchet : Weapon
 
     // Update is called once per frame
     void Update() {
-		if (Input.GetKey(KeyCode.Mouse0) && !this.CurrentlyAttacking) {
+		if (Input.GetKey(KeyCode.Mouse0) && !this.CurrentlyAttacking && GlobalGame.ControlMode == ControlModes.Player) {
 			this.Swing();
 			this.animator.SetTrigger("Attack");
 			//playerController.RotationEnabled = false;

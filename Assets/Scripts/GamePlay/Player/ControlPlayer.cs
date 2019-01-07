@@ -50,6 +50,7 @@ public class ControlPlayer : MonoBehaviour {
 
 	void Update() {
 
+
 		//Prevent updates if game is paused
 		if (GlobalGame.Paused) return;
 
@@ -67,6 +68,7 @@ public class ControlPlayer : MonoBehaviour {
 			cameraAttachment.enabled = true;
 			cameraMovement.ZoomUpdate();
 			initSwitchMode = false;
+			return;
 		}
 
 
@@ -137,6 +139,10 @@ public class ControlPlayer : MonoBehaviour {
 		curMovement = new Vector3(0,0,0);
 	}
 
+
+
+
+	// -------------- Rotation Calculations ---------------
 	[Header("Rotation")]
 
 	public bool RotationEnabled = true;
@@ -214,7 +220,12 @@ public class ControlPlayer : MonoBehaviour {
 
 	//float velocity = 9.87f;
 
+
+	//----------- XZ Movement Calculations --------------
+	
 	Vector3 curMovement = Vector3.zero;
+
+	float VelocityDamping = 1;
 
 	bool sideMoveActive = false;
 

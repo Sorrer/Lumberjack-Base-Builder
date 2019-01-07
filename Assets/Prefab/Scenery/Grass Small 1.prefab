@@ -143,24 +143,16 @@ MonoBehaviour:
   PlaceHolder: {fileID: 0}
   InvalidBuildObject: {fileID: 0}
   DamgeSystem: {fileID: 0}
-  Bounds:
-  - {fileID: 5632956991754899183}
   BuildCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
-  DestructionCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
+    ResourceCosts: []
+    SpecialResourceCosts: []
   BreakCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
-  OverwiteType: 0
+    ResourceCosts: []
+    SpecialResourceCosts: []
+  OverwriteType: 0
+  type: 4
+  PlacementOffset: {x: 0, y: 0, z: 0}
+  IsBuilt: 0
 --- !u!1 &1485783790757882
 GameObject:
   m_ObjectHideFlags: 0

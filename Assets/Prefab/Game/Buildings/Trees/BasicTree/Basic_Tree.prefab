@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6493827021048932717}
   - component: {fileID: 6532937597394011047}
   - component: {fileID: 6618193759370127803}
-  - component: {fileID: 963817449150055813}
   - component: {fileID: 5804550754206584920}
+  - component: {fileID: 7928947047041959015}
   m_Layer: 9
   m_Name: Basic_Tree
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680958928108634620}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.0000003897877, y: 0.0066540665, z: 0.000058066376, w: 0.9999779}
   m_LocalPosition: {x: -100, y: -100, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -118,43 +118,6 @@ MonoBehaviour:
   TotalHealth: 0
   LastRemainingDamage: 0
   genericAI: {fileID: 0}
---- !u!114 &963817449150055813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680958928108634620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7d417e682d721c4292199c9ceff7db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Container: {fileID: 0}
-  PlaceHolder: {fileID: 1760383118200422489, guid: 5e14f9ed8c88d394aad49110f1cfffce,
-    type: 3}
-  InvalidBuildObject: {fileID: 302726531083797236, guid: 2bf36ae384942e648956e3cb1d3a6b5c,
-    type: 3}
-  DamgeSystem: {fileID: 6618193759370127803}
-  Bounds:
-  - {fileID: 5804550754206584920}
-  BuildCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
-  DestructionCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
-  BreakCost:
-    Cost1: 0
-    Cost2: 0
-    Cost3: 0
-    SpecialCost: []
-  OverwiteType: 2
-  PlacementOffset: {x: 0, y: 0, z: 0}
 --- !u!65 &5804550754206584920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,3 +131,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 3.686996, z: 2.4}
   m_Center: {x: 0, y: 1.831502, z: 0}
+--- !u!114 &7928947047041959015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680958928108634620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad4ae736b608134f86a25c9f4c5a783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Container: {fileID: 677223396826929074}
+  PlaceHolder: {fileID: 1760383118200422489, guid: 5e14f9ed8c88d394aad49110f1cfffce,
+    type: 3}
+  InvalidBuildObject: {fileID: 302726531083797236, guid: 2bf36ae384942e648956e3cb1d3a6b5c,
+    type: 3}
+  DamgeSystem: {fileID: 6618193759370127803}
+  BuildCost:
+    ResourceCosts: []
+    SpecialResourceCosts: []
+  BreakCost:
+    ResourceCosts: []
+    SpecialResourceCosts: []
+  OverwriteType: 2
+  type: 6
+  PlacementOffset: {x: 0, y: 0, z: 0}
+  IsBuilt: 0

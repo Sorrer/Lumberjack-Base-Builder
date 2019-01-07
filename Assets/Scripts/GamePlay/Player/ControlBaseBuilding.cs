@@ -18,16 +18,43 @@ public class ControlBaseBuilding : MonoBehaviour
 	}
 
 	public void UpdateControl() {
-		
-		
+
+		BuildManager buildManager = GlobalGame.BuildManager;
+
+		buildManager.BuildActive = true;
+
 
 		if (Input.GetKeyDown(KeyCode.K)) {
-			GlobalGame.BuildManager.EnableBuild(TestBuilding.GetComponent<Building>());
+			buildManager.EnableBuild(TestBuilding.GetComponent<Building>());
 		}
 
 		if (Input.GetKeyDown(KeyCode.L)) {
-			GlobalGame.BuildManager.DisableBuild();
+			buildManager.DisableBuild();
 
+		}
+		
+		
+
+		if (buildManager.BuildActive && buildManager.isBuilding) {
+
+			if (Input.GetKey(KeyCode.Comma)) {
+				buildManager.Rotate(500 * Time.deltaTime);
+			}
+
+			if (Input.GetKey(KeyCode.Period)) {
+				buildManager.Rotate(-500 * Time.deltaTime);
+
+			}
+
+
+			if (Input.GetKeyDown(KeyCode.Mouse0)) {
+				Debug.Log("Trying to build");
+				Debug.Log(GlobalGame.BuildManager.Build());
+			}
+		} else if(buildManager.BuildActive) {
+			if(Input.GetKeyDown(KeyCode.Mouse0)) {
+				buildManager.Select();
+			}
 		}
 	}
 

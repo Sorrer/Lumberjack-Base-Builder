@@ -10,7 +10,7 @@ public class SpawnSurrounding : MonoBehaviour {
 	public bool Enabled = true;
 	public Transform parent;
 	public float height = 0.2f;
-
+	public float spawn_multiplier = 1f;
 	public List<SpawnableLocation> SpawnLocations = new List<SpawnableLocation>();
 
 
@@ -165,7 +165,7 @@ public class SpawnSurrounding : MonoBehaviour {
 
 		foreach (SpawnableLocation loc in SpawnLocations) {
 			foreach(SpawnableScenery scenery in Spawnable) {
-				int spawnAmount = (int)(scenery.MaxSpawnAmount * scenery.SpawnRate * loc.percentage);
+				int spawnAmount = (int)(scenery.MaxSpawnAmount * scenery.SpawnRate * loc.percentage * spawn_multiplier);
 				loc.SpawnCounts.Add(scenery, spawnAmount);
 				scenery.CurrentSpawnCount += spawnAmount;
 
@@ -192,7 +192,7 @@ public class SpawnSurrounding : MonoBehaviour {
 		foreach(Rect rect2 in spawned) {
 			if (rect1.Overlaps(rect2)) {
 				return true;
-			}
+			}	
 		}
 
 		foreach(Collider collider in NoSpawn) {

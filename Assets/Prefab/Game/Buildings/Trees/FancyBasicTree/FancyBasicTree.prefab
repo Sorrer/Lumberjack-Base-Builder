@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7405064494344267511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7405064494343846615}
+  - component: {fileID: 7405064494340946679}
+  - component: {fileID: 7405064494342076471}
+  - component: {fileID: 6312026584000702284}
+  - component: {fileID: 3977590631947295379}
+  - component: {fileID: 8521610773005676178}
+  m_Layer: 9
+  m_Name: FancyBasicTree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7405064494343846615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -100, y: -100, z: -100}
+  m_LocalScale: {x: 0.72718024, y: 0.59413266, z: 0.56668216}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7405064494340946679
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_Mesh: {fileID: 4300000, guid: 7b3827bf9c1b92346bacf4c2081b749b, type: 3}
+--- !u!23 &7405064494342076471
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7b3827bf9c1b92346bacf4c2081b749b, type: 3}
+  - {fileID: 2100002, guid: 7b3827bf9c1b92346bacf4c2081b749b, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!64 &6312026584000702284
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 7b3827bf9c1b92346bacf4c2081b749b, type: 3}
+--- !u!114 &3977590631947295379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa963dddebbaa4941a2b6552f2238e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invincible: 0
+  PermDeath: 1
+  MaxOutCurrentHealth: 1
+  IsPlayer: 0
+  alive: 0
+  _healthArray:
+  - Type: 0
+    MaxValue: 100
+    Value: 0
+    DamageReduction: 0
+  TotalMaxHealth: 0
+  TotalHealth: 0
+  LastRemainingDamage: 0
+  genericAI: {fileID: 0}
+--- !u!114 &8521610773005676178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405064494344267511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad4ae736b608134f86a25c9f4c5a783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Container: {fileID: 7405064494343846615}
+  PlaceHolder: {fileID: 2834515828180961862, guid: ea2ea3d036d95134e9fc3d19ec3d60f3,
+    type: 3}
+  InvalidBuildObject: {fileID: 2214347037311166187, guid: 774331384b2c9a04d9561270fe12f369,
+    type: 3}
+  DamgeSystem: {fileID: 3977590631947295379}
+  BuildCost:
+    ResourceCosts: []
+    SpecialResourceCosts: []
+  BreakCost:
+    ResourceCosts: []
+    SpecialResourceCosts: []
+  OverwriteType: 2
+  type: 6
+  PlacementOffset: {x: 0, y: -0.18, z: 0}
+  IsBuilt: 0

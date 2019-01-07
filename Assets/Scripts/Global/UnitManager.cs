@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnitTypes {Enemy, Player, Tree, Building, Scenery, NONE}
+public enum UnitTypes {Enemy, Player, Tree, Building, Scenery, Light, NONE}
 [System.Serializable]
 public class UnitManager : MonoBehaviour {
 
@@ -13,6 +13,8 @@ public class UnitManager : MonoBehaviour {
 	[SerializeField] private List<GameObject> Player	= new List<GameObject>();
 	[SerializeField] private List<Building> Trees		= new List<Building>();
 	[SerializeField] private List<Building> Buildings	= new List<Building>();
+	[SerializeField] private List<GameLight> Light = new List<GameLight>();
+	[SerializeField] private List<ReactiveObject> ReactiveObjects = new List<ReactiveObject>();
 
 	public List<Building> Scenery = new List<Building>();
 
@@ -54,7 +56,16 @@ public class UnitManager : MonoBehaviour {
 			return Scenery;
 		}
 	}
-
+	public List<GameLight> LightList {
+		get {
+			return Light;
+		}
+	}
+	public List<ReactiveObject> ReactiveObjectList {
+		get {
+			return ReactiveObjects;
+		}
+	}
 
 
 	// --------- Adding units ----------------
@@ -108,6 +119,15 @@ public class UnitManager : MonoBehaviour {
 				}
 
 				break;
+
+			case UnitTypes.Light:
+
+				if (obj is GameLight) {
+					this.addLight((GameLight)obj);
+					added = true;
+				}
+
+				break;
 		}
 
 		if (!added) {
@@ -117,6 +137,76 @@ public class UnitManager : MonoBehaviour {
 
 		return true;
 
+	}
+
+	// ------------ Remove Unit ---------
+
+	public bool removeUnit(Object obj, UnitTypes type) {
+
+		bool removed = false;
+
+		switch (type) {
+			case UnitTypes.Enemy:
+
+				if (obj is GenericEnemy) {
+					this.removeEnemy((GenericEnemy)obj);
+					removed = true;
+				}
+
+				break;
+
+			case UnitTypes.Player:
+
+				if (obj is GameObject) {
+					this.removePlayer((GameObject)obj);
+					removed = true;
+				}
+
+				break;
+
+			case UnitTypes.Tree:
+
+				if (obj is Building) {
+					this.removeTree((Building)obj);
+					removed = true;
+				}
+
+				break;
+
+			case UnitTypes.Building:
+
+				if (obj is Building) {
+					this.removeBuilding((Building)obj);
+					removed = true;
+				}
+
+				break;
+
+			case UnitTypes.Scenery:
+
+				if (obj is Building) {
+					this.removeScenery((Building)obj);
+					removed = true;
+				}
+
+				break;
+
+			case UnitTypes.Light:
+
+				if (obj is GameLight) {
+					this.removeLight((GameLight)obj);
+					removed = true;
+				}
+
+				break;
+		}
+
+		if (!removed) {
+			Debug.Log("Unable to remove " + obj);
+			return false;
+		}
+
+		return true;
 	}
 
 	//Enemies IO
@@ -159,5 +249,22 @@ public class UnitManager : MonoBehaviour {
 	}
 	public void removeScenery(Building scenery) {
 		this.Scenery.Remove(scenery);
+	}
+
+	//Light IO
+	public void addLight(GameLight light) {
+		this.Light.Add(light);
+	}
+	public void removeLight(GameLight light) {
+		this.Light.Remove(light);
+	}
+
+	//ReactiveObjects IO
+	public void addReactiveObject(ReactiveObject obj) {
+		this.ReactiveObjects.Add(obj);
+	}
+
+	public void removeReactiveObject(ReactiveObject obj) {
+		this.ReactiveObjects.Remove(obj);
 	}
 }

@@ -143,6 +143,8 @@ public class CameraMovement : MonoBehaviour {
 		}
 	}
 
+	// ----------- Zooming -------------------
+
 	float deadZoneVertical2 = 0.15f;
 	float deadZoneHorizontal2 = 0.15f;
 
@@ -228,6 +230,8 @@ public class CameraMovement : MonoBehaviour {
 
 	}
 
+	//------------------- XZ Movement
+	
 	void moveCameraUp(float eSpeed) {
 		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.forward * eSpeed * aSpeed * Time.fixedDeltaTime;
 
@@ -259,13 +263,19 @@ public class CameraMovement : MonoBehaviour {
 	void moveCameraRight (float eSpeed) {
 		Camera.main.transform.parent.position = Camera.main.transform.parent.position + transform.parent.right * eSpeed * aSpeed * Time.fixedDeltaTime;
 
-		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
-
-		if (!camRect.Overlaps(bounds)) {
+		if (isOutOfBounds()) {
 			moveCameraLeft(eSpeed);
 		}
 	}
 
+	public bool isOutOfBounds() {
+		Rect camRect = new Rect(new Vector2(Camera.main.transform.parent.transform.position.x, Camera.main.transform.parent.transform.position.z), new Vector2(1, 1));
+
+		return !camRect.Overlaps(bounds);
+	}
+
+
+	// --------- Movement Via Screen Edge ---------------
 
 	void edgeScroll() {
 		if (!GlobalGame.EnableEdgeScroll) return;
